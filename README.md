@@ -2,7 +2,7 @@
 
 ## 環境構築
 
-- git clone git@github.com:yume0606
+- git clone git@github.com:yume0606/test-marketplace-app.git
 - docker-compose up -d --build
 
 ## Laravel環境構築
@@ -18,7 +18,6 @@
 - ./vendor/bin/sail up -d
 - ./vendor/bin/sail artisan key:generate
 - ./vendor/bin/sail artisan migrate
-- ./vendor/bin/sail artisan db:seed
 
 ## 実行環境
 
