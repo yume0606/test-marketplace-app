@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('item_id')->constrained('items');
-            $table->foreignId('payment_method_id')->constrained('payment_methods');
+            $table->enum('payment_method', ['convenience_store', 'credit_card']);
             $table->string('postal_code', 8);
             $table->string('address');
             $table->string('building')->nullable();

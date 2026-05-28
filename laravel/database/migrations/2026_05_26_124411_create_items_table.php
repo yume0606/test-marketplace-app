@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('category_id')->constrained('categories');
-            $table->foreignId('condition_id')->constrained('conditions');
+            $table->enum('condition', ['good', 'fair', 'poor', 'bad']);
             $table->string('name');
             $table->string('brand');
             $table->text('description');

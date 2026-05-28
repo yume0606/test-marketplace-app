@@ -9,3 +9,10 @@ class Item extends Model
 {
     use HasFactory;
 }
+/**Item.phpにこれを記載する
+const CONDITIONS = [
+    'good' => '良好',
+    'fair' => 'まあまあ良好',
+    'poor' => 'あまり良くない',
+    'bad' => '良くない',
+];
