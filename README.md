@@ -18,6 +18,7 @@
 - ./vendor/bin/sail up -d
 - ./vendor/bin/sail artisan key:generate
 - ./vendor/bin/sail artisan migrate
+- ./vendor/bin/sail artisan db:seed
 
 ## 実行環境
 
@@ -27,6 +28,6 @@
 
 ## ER図
 
-![ER図]
+![ER図](フリマアプリER図.png)
 
 ## URL
