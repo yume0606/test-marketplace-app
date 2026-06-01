@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_image',
+        'postal_code',
+        'address',
+        'building',
     ];
 
     /**
@@ -42,4 +46,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    //出品した商品
+    public function items()
+    {
+        return $this->hasMany
+        (Item::class);
+    }
+    //購入した注文
+    public function Orders()
+    {
+        return $this->hasMany
+        (Order::class, 'user_id');
+    }
+    public function likes()
+    {
+        return $this->hasMany
+        (Like::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany
+        (Comment::class);
+    }
 }
