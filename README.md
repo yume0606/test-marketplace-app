@@ -20,6 +20,15 @@
 - ./vendor/bin/sail artisan migrate
 - ./vendor/bin/sail artisan db:seed
 
+## .envのDB設定
+
+- DB_CONNECTION=mysql
+- DB_HOST=mysql
+- DB_PORT=3306
+- DB_DATABASE=laravel
+- DB_USERNAME=sail
+- DB_PASSWORD=password
+
 ## 実行環境
 
 - PHP 8.2 / Laravel 10.x
@@ -31,3 +40,11 @@
 ![ER図](フリマアプリER図.png)
 
 ## URL
+
+# マイグレーションリセット＆再実行
+
+- ./vendor/bin/sail artisan migrate:fresh
+
+# phpMyAdmin
+
+- http://localhost:8080
