@@ -41,10 +41,10 @@
 
 ## URL
 
-# マイグレーションリセット＆再実行
+## マイグレーションリセット＆再実行
 
 - ./vendor/bin/sail artisan migrate:fresh
 
-# phpMyAdmin
+## phpMyAdmin
 
 - http://localhost:8080
