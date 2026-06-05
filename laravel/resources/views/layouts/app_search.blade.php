@@ -14,9 +14,9 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
             background-color: #ffffff;
-            color: #000000;
+            color: #333333;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -29,18 +29,64 @@
             height: 56px;
             display: flex;
             align-items: center;
+            gap: 24px;
         }
 
         .header-logo {
             display: flex;
             align-items: center;
             text-decoration: none;
+            flex-shrink: 0;
         }
 
         .logo-img {
             height: 28px;
-            /* 高さで調整、幅は自動 */
             width: auto;
+        }
+
+        .header-search {
+            flex: 1;
+            max-width: 480px;
+        }
+
+        .header-search input {
+            width: 100%;
+            height: 36px;
+            padding: 0 14px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: auto;
+        }
+
+        .header-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .header-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .btn-sell {
+            padding: 8px 20px;
+            border: 1.5px solid #ffffff;
+            border-radius: 4px;
+            color: #ffffff !important;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
         }
 
         /* メインコンテンツ */
@@ -48,7 +94,6 @@
             flex: 1;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
             padding: 60px 16px;
         }
 
@@ -88,15 +133,14 @@
             font-size: 15px;
             color: #333333;
             background-color: #ffffff;
-            transition: border-color 0.2s ease;
             outline: none;
+            transition: border-color 0.2s ease;
         }
 
         .form-input:focus {
             border-color: #e84444;
         }
 
-        /* エラーメッセージ */
         .error-message {
             color: #e84444;
             font-size: 12px;
@@ -123,7 +167,6 @@
             background-color: #d03333;
         }
 
-        /* リンク */
         .form-link {
             display: block;
             text-align: center;
@@ -146,6 +189,22 @@
         <a href="/" class="header-logo">
             <img src="{{ asset('design/CoachTech.png') }}" alt="COACHTECH" class="logo-img">
         </a>
+
+        <div class="header-search">
+            <input type="text" placeholder="なにをお探しですか？">
+        </div>
+
+        <nav class="header-nav">
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                ログアウト
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+                @csrf
+            </form>
+            <a href="{{ route('mypage') }}">マイページ</a>
+            <a href="{{ route('items.create') }}" class="btn-sell">出品</a>
+        </nav>
     </header>
 
     <main class="main-content">
