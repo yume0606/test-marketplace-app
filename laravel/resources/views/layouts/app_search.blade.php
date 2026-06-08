@@ -47,6 +47,7 @@
         .header-search {
             flex: 1;
             max-width: 480px;
+            padding: 50px;
         }
 
         .header-search input {
