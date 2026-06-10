@@ -30,6 +30,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
         }
 
         .header-logo {
@@ -45,9 +46,11 @@
         }
 
         .header-search {
-            flex: 1;
+            width: 500px;
             max-width: 480px;
-            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             padding: 0 24px;
         }
 

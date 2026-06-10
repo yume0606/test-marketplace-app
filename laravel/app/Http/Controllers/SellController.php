@@ -29,7 +29,7 @@ class SellController extends Controller
      */
     public function store(Request $request)
     {
-        return view('top.index');
+        return redirect()->route('items.index');
     }
 
     /**
