@@ -29,7 +29,7 @@
             height: 56px;
             display: flex;
             align-items: center;
-            gap: 24px;
+            justify-content: space-between;
         }
 
         .header-logo {
@@ -47,7 +47,8 @@
         .header-search {
             flex: 1;
             max-width: 480px;
-            padding: 50px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
         .header-search input {

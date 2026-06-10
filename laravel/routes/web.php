@@ -17,8 +17,17 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//商品一覧画面
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
+//商品詳細画面
 Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
+//プロフィール画面
 Route::get('/mypage', [UserController::class, 'index'])->name('mypage');
-Route::get('/sell', [SellController::class, 'index'])->name('items.create');
+//プロフィール編集画面
+Route::get('/mypage/profile', [UserController::class, 'edit'])->name('profile.edit');
+//プロフィール編集機能
+Route::post('/mypage/profile', [UserController::class, 'update'])->name('profile.update');
+//商品出品画面
+Route::get('/sell', [SellController::class, 'create'])->name('items.create');
+//商品出品機能
+Route::post('/sell', [SellController::class, 'store'])->name('items.store');

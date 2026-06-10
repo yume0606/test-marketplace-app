@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,7 +12,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('profile.mypage-index');
+        $items = Item::all();
+        return view('profile.mypage-index', compact('items'));
     }
 
     /**
@@ -41,9 +43,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        $user = auth()->user();
+        return view('profile.mypage-edit', compact('user'));
     }
 
     /**
@@ -51,7 +54,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return view('profile.mypage-index');
     }
 
     /**
