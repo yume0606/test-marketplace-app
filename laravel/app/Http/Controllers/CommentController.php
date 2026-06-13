@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\comment;
 use Illuminate\Http\Request;
+use App\Models\Item;
+use App\Models\User;
 
 class CommentController extends Controller
 {
@@ -18,9 +20,9 @@ class CommentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function comment_create(Item $item)
     {
-        //
+        return view('top.detail', compact('comment'));
     }
 
     /**

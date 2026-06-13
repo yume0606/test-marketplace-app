@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class BuyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function buy_index(Item $item)
     {
-        //
+        return view('buy.buy', compact('item'));
     }
 
     /**

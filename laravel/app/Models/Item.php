@@ -50,7 +50,7 @@ class Item extends Model
         (Like::class);
     }
     //コメント
-    public function comment()
+    public function comments()
     {
         return $this->hasMany
         (Comment::class);

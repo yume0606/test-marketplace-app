@@ -20,7 +20,11 @@ use App\Http\Controllers\UserController;
 //商品一覧画面
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 //商品詳細画面
-Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
+//商品コメント機能
+Route::post('/item/{item}/comment', [CommentController::class, 'comment_create'])->name('comments.store');
+//商品購入画面
+Route::get('/purchase/{item}', [BuyController::class, 'buy_index'])->name('items.purchase');
 //プロフィール画面
 Route::get('/mypage', [UserController::class, 'index'])->name('mypage');
 //プロフィール編集画面

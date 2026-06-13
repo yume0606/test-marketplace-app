@@ -37,7 +37,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return view('top.detail');
+        return view('top.detail', compact('item'));
     }
 
     /**
