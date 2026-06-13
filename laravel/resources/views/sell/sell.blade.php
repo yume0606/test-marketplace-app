@@ -244,10 +244,10 @@
                     <p class="field-label">商品の状態</p>
                     <select name="condition" class="form-select">
                         <option value="">選択してください</option>
-                        <option value="良好" {{ old('condition') === '良好' ? 'selected' : '' }}>良好</option>
-                        <option value="目立った傷や汚れなし" {{ old('condition') === '目立った傷や汚れなし' ? 'selected' : '' }}>目立った傷や汚れなし</option>
-                        <option value="やや傷や汚れあり" {{ old('condition') === 'やや傷や汚れあり' ? 'selected' : '' }}>やや傷や汚れあり</option>
-                        <option value="状態が悪い" {{ old('condition') === '状態が悪い' ? 'selected' : '' }}>状態が悪い</option>
+                        <option value="good" {{ old('condition') === 'good' ? 'selected' : '' }}>良好</option>
+                        <option value="fair" {{ old('condition') === 'fair' ? 'selected' : '' }}>目立った傷や汚れなし</option>
+                        <option value="poor" {{ old('condition') === 'poor' ? 'selected' : '' }}>やや傷や汚れあり</option>
+                        <option value="bad" {{ old('condition') === 'bad' ? 'selected' : '' }}>状態が悪い</option>
                     </select>
                     @error('condition')
                         <p class="error-message">{{ $message }}</p>

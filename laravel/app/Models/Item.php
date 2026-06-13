@@ -17,7 +17,7 @@ class Item extends Model
 
     protected $fillable = [
         'user_id',
-        'category_id',
+        //'category_id',
         'condition',
         'name',
         'brand',
@@ -32,7 +32,7 @@ class Item extends Model
         (User::class);
     }
     //カテゴリー（多対多）
-    public function category()
+    public function categories()
     {
         return $this->belongsToMany
         (Category::class, 'item_categories');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class SellController extends Controller
@@ -29,6 +30,25 @@ class SellController extends Controller
      */
     public function store(Request $request)
     {
+        $image = $request->file('image');
+        $imagePath = $image->storeAs(
+            'items',
+            uniqid() . '.' . $image->getClientOriginalExtension(),
+            'public'
+        );
+
+        $item = Item::create([
+            'user_id' => auth()->id(),
+            'condition' => $request->condition,
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image' => $imagePath,
+            //'カラム名'=>$requestで送られた名前
+        ]);
+        $item->categories()->attach($request->categories);
+
         return redirect()->route('items.index');
     }
 
