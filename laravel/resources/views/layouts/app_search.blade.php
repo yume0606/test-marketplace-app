@@ -104,7 +104,7 @@
 
         .content-wrapper {
             width: 100%;
-            max-width: 580px;
+            max-width: 1100px;
         }
 
         /* ページタイトル */
