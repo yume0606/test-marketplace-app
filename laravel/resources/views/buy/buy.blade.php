@@ -197,6 +197,9 @@
                 <div style="margin-bottom: 32px;">
                     <p class="section-label">支払い方法</p>
                     <select name="payment_method" class="payment-select" id="payment-select">
+                        <option value="" {{ old('payment_method') === 'convenience' ? 'selected' : '' }}>
+                            選択してください
+                        </option>
                         <option value="convenience" {{ old('payment_method') === 'convenience' ? 'selected' : '' }}>
                             コンビニ払い
                         </option>

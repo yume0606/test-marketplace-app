@@ -25,6 +25,10 @@ Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
 Route::post('/item/{item}/comment', [CommentController::class, 'comment_create'])->name('comments.store');
 //商品購入画面
 Route::get('/purchase/{item}', [BuyController::class, 'buy_index'])->name('items.purchase');
+//商品購入機能
+Route::post('/purchase/{item}', [BuyController::class, 'store'])->name('purchase.store');
+//送付先住所変更画面
+Route::get('/purchase/address/{item}', [UserController::class, 'address_edit'])->name('purchase.address.edit');
 //プロフィール画面
 Route::get('/mypage', [UserController::class, 'index'])->name('mypage');
 //プロフィール編集画面

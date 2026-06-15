@@ -10,9 +10,9 @@ class Item extends Model
     use HasFactory;
     const CONDITIONS = [
         'good' => '良好',
-        'fair' => 'まあまあ良好',
-        'poor' => 'あまり良くない',
-        'bad' => '良くない',
+        'fair' => '目立った傷や汚れなし',
+        'poor' => 'やや傷や汚れあり',
+        'bad' => '状態が悪い',
     ];
 
     protected $fillable = [

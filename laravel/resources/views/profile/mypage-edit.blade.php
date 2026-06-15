@@ -1,5 +1,13 @@
 @extends('layouts.app_search')
 
+@push('styles')
+    <style>
+        .content-wrapper {
+            max-width: 520px;
+        }
+    </style>
+@endpush
+
 @section('content')
 
     @push('styles')

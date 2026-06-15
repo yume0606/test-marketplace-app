@@ -49,6 +49,12 @@ class UserController extends Controller
         return view('profile.mypage-edit', compact('user'));
     }
 
+    public function address_edit()
+    {
+        $user = auth()->user();
+        return view('profile.mypage-edit', compact('user'));
+    }
+
     /**
      * Update the specified resource in storage.
      */

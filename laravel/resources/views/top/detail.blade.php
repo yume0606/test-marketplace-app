@@ -351,7 +351,7 @@
                             </tr>
                             <tr>
                                 <td>商品の状態</td>
-                                <td>{{ $item->condition }}</td>
+                                <td>{{ \App\Models\Item::CONDITIONS[$item->condition] ?? $item->condition }}</td>
                             </tr>
                         </table>
                     </div>
