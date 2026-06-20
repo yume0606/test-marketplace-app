@@ -223,6 +223,9 @@
                     <div class="delivery-address">
                         <p>〒 {{ Auth::user()->postal_code ?? 'XXX-YYYY' }}</p>
                         <p>{{ (Auth::user()->address ?? '') . (Auth::user()->building ?? '') ?: 'ここには住所と建物が入ります' }}</p>
+                        @error('address')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 

@@ -11,7 +11,7 @@ class PurchaseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class PurchaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'payment_method' => ['required'],
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'payment_method.required' => '支払い方法を選択してください',
+        ];
+    }
+    //送付先住所のバリテーションはコントローラーで実装
 }

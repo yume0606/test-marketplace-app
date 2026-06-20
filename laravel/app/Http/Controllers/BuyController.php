@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PurchaseRequest;
 
 class BuyController extends Controller
 {
@@ -28,12 +29,17 @@ class BuyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Item $item)
+    public function store(PurchaseRequest $request, Item $item)
     {
-        $user = Auth::user();
-        return view('buy.buy', compact('item', 'user'));
-    }
+        $user = auth()->user();
 
+        if (!$user->postal_code || !$user->address) {
+            return redirect()
+                ->route('items.purchase', $item->id)
+                ->withErrors(['address' => '配送先を入力してください'])
+                ->withInput();
+        }
+    }
     /**
      * Display the specified resource.
      */
