@@ -61,13 +61,13 @@
         {{-- アバター --}}
         <div class="avatar-section">
             <div class="avatar-circle">
-                @if(Auth::user()->avatar)
-                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="アバター">
-                @endif
+                <img id="avatar-preview"
+                    src="{{ Auth::user()->profile_image ? asset('storage/' . Auth::user()->profile_image) : '' }}"
+                    alt="プロフィール画像" style="{{ Auth::user()->profile_image ? '' : 'display:none;' }}">
             </div>
             <div>
-                <input type="file" name="avatar" id="avatar" accept="image/*" style="display:none;">
-                <button type="button" class="btn-image-select" onclick="document.getElementById('avatar').click()">
+                <input type="file" name="profile_image" id="profile_image" accept="image/*" style="display:none;">
+                <button type="button" class="btn-image-select" onclick="document.getElementById('profile_image').click()">
                     画像を選択する
                 </button>
             </div>
@@ -113,5 +113,22 @@
 
         <button type="submit" class="btn-primary">更新する</button>
     </form>
+
+    <script>
+        document.getElementById('profile_image').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('avatar-preview');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
 
 @endsection

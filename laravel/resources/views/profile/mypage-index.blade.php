@@ -128,8 +128,8 @@
     {{-- プロフィールヘッダー --}}
     <div class="profile-header">
         <div class="profile-avatar">
-            @if(Auth::user()->avatar)
-                <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="アバター">
+            @if(Auth::user()->profile_image)
+                <img src="{{ asset('storage/' . Auth::user()->profile_image) }}" alt="アバター">
             @endif
         </div>
         <p class="profile-name">{{ Auth::user()->name }}</p>

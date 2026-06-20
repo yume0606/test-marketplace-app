@@ -48,3 +48,7 @@
 ## phpMyAdmin
 
 - http://localhost:8080
+
+## プロフィール画像のリンク
+
+- sail artisan storage:link
