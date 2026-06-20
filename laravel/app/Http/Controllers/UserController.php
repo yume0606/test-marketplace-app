@@ -7,6 +7,7 @@ use App\Models\User;
 use Doctrine\Inflector\Rules\English\Rules;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddressRequest;
+use App\Http\Requests\ProfileRequest;
 class UserController extends Controller
 {
     /**
@@ -72,7 +73,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AddressRequest $request)
+    public function update(ProfileRequest $request)
     {
         $user = auth()->user();
 
