@@ -55,6 +55,7 @@
             font-size: 14px;
             color: #888888;
             margin-bottom: 8px;
+            position: relative;
         }
 
         .item-image img {
@@ -66,6 +67,18 @@
         .item-name {
             font-size: 14px;
             color: #1a1a1a;
+        }
+
+        .sold-label {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-color: red;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 4px;
         }
     </style>
 @endpush
@@ -92,6 +105,9 @@
                         <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
                     @else
                         商品画像
+                    @endif
+                    @if($item->order)
+                        <span class="sold-label">Sold</span>
                     @endif
                 </div>
                 <p class="item-name">{{ $item->name }}</p>

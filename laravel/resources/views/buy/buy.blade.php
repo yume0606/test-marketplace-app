@@ -197,13 +197,13 @@
                 <div style="margin-bottom: 32px;">
                     <p class="section-label">支払い方法</p>
                     <select name="payment_method" class="payment-select" id="payment-select">
-                        <option value="" {{ old('payment_method') === 'convenience' ? 'selected' : '' }}>
+                        <option value="" {{ old('payment_method') === '' ? 'selected' : '' }}>
                             選択してください
                         </option>
-                        <option value="convenience" {{ old('payment_method') === 'convenience' ? 'selected' : '' }}>
+                        <option value="convenience_store" {{ old('payment_method') === 'convenience_store' ? 'selected' : '' }}>
                             コンビニ払い
                         </option>
-                        <option value="card" {{ old('payment_method') === 'card' ? 'selected' : '' }}>
+                        <option value="credit_card" {{ old('payment_method') === 'credit_card' ? 'selected' : '' }}>
                             カード支払い
                         </option>
                     </select>
@@ -257,7 +257,7 @@
     <script>
         const select = document.getElementById('payment-select');
         const summaryPayment = document.getElementById('summary-payment');
-        const labels = { convenience: 'コンビニ払い', card: 'カード支払い' };
+        const labels = { convenience_store: 'コンビニ払い', credit_card: 'カード支払い' };
 
         select.addEventListener('change', () => {
             summaryPayment.textContent = labels[select.value] ?? select.value;

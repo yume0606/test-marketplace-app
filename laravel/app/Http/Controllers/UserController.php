@@ -13,9 +13,24 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = Item::all();
+        if ($request->get('tab') === 'buy') {
+            // 購入した商品
+            $items = Item::with('order')
+                ->whereHas('order', function ($query) {
+                    $query->where('user_id', auth()->id());
+                })
+                ->latest()
+                ->get();
+        } else {
+            // 出品した商品
+            $items = Item::with('order')
+                ->where('user_id', auth()->id())
+                ->latest()
+                ->get();
+        }
+
         return view('profile.mypage-index', compact('items'));
     }
 

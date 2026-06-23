@@ -40,4 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/sell', [SellController::class, 'create'])->name('items.create');
     // 商品出品機能
     Route::post('/sell', [SellController::class, 'store'])->name('items.store');
+
+    //いいね機能
+    Route::post('/items/{item}/like', [LikeController::class, 'create'])->name('items.like');
+
 });

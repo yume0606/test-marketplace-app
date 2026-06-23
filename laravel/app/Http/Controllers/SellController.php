@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use App\Http\Requests\ExhibitionRequest;
 
 class SellController extends Controller
 {
@@ -28,7 +29,7 @@ class SellController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
         $image = $request->file('image');
         $imagePath = $image->storeAs(

@@ -108,6 +108,19 @@
             font-size: 14px;
             color: #888888;
             margin-bottom: 8px;
+            position: relative;
+        }
+
+        .sold-label {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-color: red;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 4px;
         }
 
         .item-image img {
@@ -138,11 +151,11 @@
 
     {{-- タブ --}}
     <div class="tab-nav">
-        <a href="{{ route('mypage') }}" class="tab-link {{ request('tab') !== 'bought' ? 'active' : '' }}">
+        <a href="{{ route('mypage', ['tab' => 'sell']) }}"
+            class="tab-link {{ request('tab', 'sell') === 'sell' ? 'active' : '' }}">
             出品した商品
         </a>
-        <a href="{{ route('mypage', ['tab' => 'bought']) }}"
-            class="tab-link {{ request('tab') === 'bought' ? 'active' : '' }}">
+        <a href="{{ route('mypage', ['tab' => 'buy']) }}" class="tab-link {{ request('tab') === 'buy' ? 'active' : '' }}">
             購入した商品
         </a>
     </div>
@@ -156,6 +169,9 @@
                         <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
                     @else
                         商品画像
+                    @endif
+                    @if($item->order)
+                        <span class="sold-label">Sold</span>
                     @endif
                 </div>
                 <p class="item-name">{{ $item->name }}</p>

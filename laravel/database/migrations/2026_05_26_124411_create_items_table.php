@@ -16,7 +16,8 @@ return new class extends Migration {
             //$table->foreignId('category_id')->constrained('categories');
             $table->enum('condition', ['good', 'fair', 'poor', 'bad']);
             $table->string('name');
-            $table->string('brand');
+            $table->string('brand')->nullable();
+            ;
             $table->text('description');
             $table->unsignedBigInteger('price');
             $table->string('image');

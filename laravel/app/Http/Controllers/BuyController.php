@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PurchaseRequest;
 
@@ -39,6 +40,16 @@ class BuyController extends Controller
                 ->withErrors(['address' => '配送先を入力してください'])
                 ->withInput();
         }
+        Order::create([
+            'item_id' => $item->id,
+            'user_id' => $user->id,
+            'payment_method' => $request->payment_method,
+            'postal_code' => $user->postal_code,
+            'address' => $user->address,
+            'building' => $user->building,
+            'purchased_at' => now(),
+        ]);
+        return redirect()->route('items.index');
     }
     /**
      * Display the specified resource.

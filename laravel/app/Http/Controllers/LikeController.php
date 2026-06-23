@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\like;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -18,9 +19,24 @@ class LikeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Item $item)
     {
-        //
+        $user = auth()->user();
+
+        $like = $item->like()->where('user_id', $user->id)->first();
+
+        if ($like) {
+            $like->delete();
+            $liked = false;
+        } else {
+            $item->like()->create(['user_id' => $user->id]);
+            $liked = true;
+        }
+        return response()->json([
+            'liked' => $liked,
+            'count' => $item->like()->count(),
+        ]);
+
     }
 
     /**
