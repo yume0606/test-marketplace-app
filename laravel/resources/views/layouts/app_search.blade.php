@@ -195,9 +195,9 @@
             <img src="{{ asset('design/CoachTech.png') }}" alt="COACHTECH" class="logo-img">
         </a>
 
-        <div class="header-search">
-            <input type="text" placeholder="なにをお探しですか？">
-        </div>
+        <form class="header-search" action="{{ route('items.index') }}" method="GET">
+            <input type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
+        </form>
 
         <nav class="header-nav">
             <a href="{{ route('logout') }}"

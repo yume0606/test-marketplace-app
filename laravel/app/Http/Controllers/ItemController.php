@@ -12,19 +12,31 @@ class ItemController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->get('keyword');
+
         if ($request->get('tab') === 'mylist' && auth()->check()) {
-            // マイリスト(いいねした商品)を表示
-            $items = auth()->user()->likes()->with('item.order')->get()->pluck('item');
+            $items = auth()->user()->likes()
+                ->with('item.order')
+                ->whereHas('item', function ($query) use ($keyword) {
+                    $query->when($keyword, function ($q) use ($keyword) {
+                        $q->where('name', 'like', "%{$keyword}%");
+                    });
+                })
+                ->get()
+                ->pluck('item');
         } else {
-            // おすすめ(全商品、自分の出品は除外)
             $items = Item::with('order')
                 ->when(auth()->check(), function ($query) {
                     $query->where('user_id', '!=', auth()->id());
                 })
+                ->when($keyword, function ($query) use ($keyword) {
+                    $query->where('name', 'like', "%{$keyword}%");
+                })
                 ->latest()
                 ->get();
         }
-        return view('top.index', compact('items'));
+
+        return view('top.index', compact('items', 'keyword'));
     }
 
     /**

@@ -87,10 +87,11 @@
 
     {{-- タブ --}}
     <div class="tab-nav">
-        <a href="{{ route('items.index') }}" class="tab-link {{ request('tab') !== 'mylist' ? 'active' : '' }}">
+        <a href="{{ route('items.index', ['keyword' => request('keyword')]) }}"
+            class="tab-link {{ request('tab') !== 'mylist' ? 'active' : '' }}">
             おすすめ
         </a>
-        <a href="{{ route('items.index', ['tab' => 'mylist']) }}"
+        <a href="{{ route('items.index', ['tab' => 'mylist', 'keyword' => request('keyword')]) }}"
             class="tab-link {{ request('tab') === 'mylist' ? 'active' : '' }}">
             マイリスト
         </a>

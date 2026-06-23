@@ -151,11 +151,12 @@
 
     {{-- タブ --}}
     <div class="tab-nav">
-        <a href="{{ route('mypage', ['tab' => 'sell']) }}"
+        <a href="{{ route('mypage', ['tab' => 'sell', 'keyword' => request('keyword')]) }}"
             class="tab-link {{ request('tab', 'sell') === 'sell' ? 'active' : '' }}">
             出品した商品
         </a>
-        <a href="{{ route('mypage', ['tab' => 'buy']) }}" class="tab-link {{ request('tab') === 'buy' ? 'active' : '' }}">
+        <a href="{{ route('mypage', ['tab' => 'buy', 'keyword' => request('keyword')]) }}"
+            class="tab-link {{ request('tab') === 'buy' ? 'active' : '' }}">
             購入した商品
         </a>
     </div>

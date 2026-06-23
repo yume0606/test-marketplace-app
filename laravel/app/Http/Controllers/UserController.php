@@ -15,11 +15,16 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->get('keyword');
+
         if ($request->get('tab') === 'buy') {
             // 購入した商品
             $items = Item::with('order')
                 ->whereHas('order', function ($query) {
                     $query->where('user_id', auth()->id());
+                })
+                ->when($keyword, function ($query) use ($keyword) {
+                    $query->where('name', 'like', "%{$keyword}%");
                 })
                 ->latest()
                 ->get();
@@ -27,11 +32,14 @@ class UserController extends Controller
             // 出品した商品
             $items = Item::with('order')
                 ->where('user_id', auth()->id())
+                ->when($keyword, function ($query) use ($keyword) {
+                    $query->where('name', 'like', "%{$keyword}%");
+                })
                 ->latest()
                 ->get();
         }
 
-        return view('profile.mypage-index', compact('items'));
+        return view('profile.mypage-index', compact('items', 'keyword'));
     }
 
     /**
