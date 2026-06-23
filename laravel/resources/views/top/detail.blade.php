@@ -320,7 +320,7 @@
                             <span class="stat-icon">
                                 <img src="{{ asset('design/comment_mark.png') }}" alt="comment">
                             </span>
-                            <span>{{ $item->comments_count ?? 0 }}</span>
+                            <span>{{ $item->comments->count() }}</span>
                         </div>
                     </div>
 

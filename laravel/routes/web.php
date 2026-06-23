@@ -17,7 +17,7 @@ Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
 // ここから下はログインが必要な機能
 Route::middleware('auth')->group(function () {
     // 商品コメント機能
-    Route::post('/item/{item}/comment', [CommentController::class, 'comment_create'])->name('comments.store');
+    Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comments.store');
 
     // 商品購入画面
     Route::get('/purchase/{item}', [BuyController::class, 'buy_index'])->name('items.purchase');

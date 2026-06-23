@@ -6,6 +6,7 @@ use App\Models\comment;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\User;
+use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
@@ -28,9 +29,14 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request, Item $item)
     {
-        //
+        $item->comments()->create([
+            'user_id' => auth()->id(),
+            'body' => $request->body,
+        ]);
+
+        return redirect()->route('items.show', $item->id);
     }
 
     /**
