@@ -27,10 +27,10 @@
             background-color: #000000;
             padding: 0 24px;
             height: 56px;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr minmax(280px, 480px) 1fr;
             align-items: center;
-            justify-content: space-between;
-            position: relative;
+            gap: 24px;
         }
 
         .header-logo {
@@ -38,6 +38,7 @@
             align-items: center;
             text-decoration: none;
             flex-shrink: 0;
+            justify-self: start;
         }
 
         .logo-img {
@@ -46,12 +47,8 @@
         }
 
         .header-search {
-            width: 500px;
-            max-width: 480px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 0 24px;
+            width: 100%;
+            justify-self: center;
         }
 
         .header-search input {
@@ -64,13 +61,36 @@
             outline: none;
             background-color: #ffffff;
             color: #333;
+            box-sizing: border-box;
         }
 
         .header-nav {
             display: flex;
             align-items: center;
             gap: 20px;
-            margin-left: auto;
+            flex-shrink: 0;
+            justify-self: end;
+        }
+
+        .header-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .header-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .btn-sell {
+            padding: 8px 20px;
+            border: 1.5px solid #ffffff;
+            border-radius: 4px;
+            color: #ffffff !important;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
         }
 
         .header-nav a {
