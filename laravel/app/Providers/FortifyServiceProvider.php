@@ -60,6 +60,11 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::registerView(function () {
             return view('fortify.register');
         });
+
+        // メール認証誘導画面を表示するビューを指定
+        Fortify::verifyEmailView(function () {
+            return view('fortify.verify-email');
+        });
         Fortify::authenticateUsing(function ($request) {
             $user = User::where('email', $request->email)->first();
 

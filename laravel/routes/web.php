@@ -14,8 +14,8 @@ Route::get('/', [ItemController::class, 'index'])->name('items.index');
 // 商品詳細画面
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
 
-// ここから下はログインが必要な機能
-Route::middleware('auth')->group(function () {
+// ここから下はログインとメール認証が必要な機能
+Route::middleware(['auth', 'verified'])->group(function () {
     // 商品コメント機能
     Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comments.store');
 
