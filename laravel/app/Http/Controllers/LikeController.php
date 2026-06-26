@@ -23,20 +23,13 @@ class LikeController extends Controller
     {
         $user = auth()->user();
 
-        $like = $item->like()->where('user_id', $user->id)->first();
-
-        if ($like) {
-            $like->delete();
-            $liked = false;
+        if ($item->like->contains('user_id', $user->id)) {
+            $item->like()->where('user_id', $user->id)->delete();
         } else {
             $item->like()->create(['user_id' => $user->id]);
-            $liked = true;
         }
-        return response()->json([
-            'liked' => $liked,
-            'count' => $item->like()->count(),
-        ]);
 
+        return back();
     }
 
     /**

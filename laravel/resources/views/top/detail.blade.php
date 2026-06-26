@@ -103,8 +103,20 @@
             height: 28px;
         }
 
-        .stat-icon img.liked {
-            filter: invert(28%) sepia(80%) saturate(2476%) hue-rotate(346deg) brightness(95%) contrast(91%);
+        /* いいねボタン(formのbutton)をdivと同じ見た目にする */
+        .like-submit-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            color: #555555;
+            font-family: inherit;
         }
 
         /* 購入ボタン */
@@ -309,13 +321,18 @@
 
                     {{-- いいね・コメント数 --}}
                     <div class="item-stats">
-                        <div class="stat-item" id="like-button" data-item-id="{{ $item->id }}">
-                            <span class="stat-icon">
-                                <img src="{{ asset('design/heart.png') }}" alt="heart" id="heart-icon"
-                                    class="{{ $item->like->contains('user_id', auth()->id()) ? 'liked' : '' }}">
-                            </span>
-                            <span id="like-count">{{ $item->like->count() }}</span>
-                        </div>
+                        <form action="{{ route('items.like', $item->id) }}" method="POST" class="stat-item">
+                            @csrf
+                            <button type="submit" class="like-submit-btn">
+                                <span class="stat-icon">
+                                    <img src="{{ $item->like->contains('user_id', auth()->id())
+        ? asset('design/heart_pink.png')
+        : asset('design/heart.png') }}" alt="heart">
+                                </span>
+                                <span>{{ $item->like->count() }}</span>
+                            </button>
+                        </form>
+
                         <div class="stat-item">
                             <span class="stat-icon">
                                 <img src="{{ asset('design/comment_mark.png') }}" alt="comment">
@@ -402,31 +419,4 @@
             </div>
         </div>
     </div>
-    <script>
-        document.getElementById('like-button').addEventListener('click', function () {
-            const itemId = this.dataset.itemId;
-            const icon = document.getElementById('heart-icon');
-            const countEl = document.getElementById('like-count');
-
-            fetch(`/items/${itemId}/like`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                },
-            })
-                .then(response => {
-                    if (response.status === 401) {
-                        window.location.href = "{{ route('login') }}";
-                        return;
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (!data) return;
-                    countEl.textContent = data.count;
-                    icon.classList.toggle('liked', data.liked);
-                });
-        });
-    </script>
 @endsection
