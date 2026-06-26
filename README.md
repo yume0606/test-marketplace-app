@@ -40,11 +40,14 @@
 - MAIL_FROM_ADDRESS="hello@example.com"
 - MAIL_FROM_NAME="${APP_NAME}"
 
-## 実行環境
+## 使用技術
 
-- PHP 8.2 / Laravel 10.x
+- PHP 8.2
+- Laravel 10.x
+- Laravel Sail
+- Laravel Fortify(認証・メール認証)
 - MySQL 8.4
-- Docker (Laravel Sail-8.5)
+- Mailpit(メール送信確認)
 
 ## ER図
 
@@ -58,22 +61,18 @@
 - 商品詳細画面：http://localhost/item/{item}
 - 商品コメント機能：http://localhost/item/{item}/comment
 - 商品購入画面：http://localhost/purchase/{item}
-- 商品購入機能：http://localhost/purchase/{item}
 - 送付先住所変更画面：http://localhost/purchase/address/{item}
-- 送付先住所変更機能：http://localhost/purchase/address/{item}
 - プロフィール画面：http://localhost/mypage
 - プロフィール編集画面：http://localhost/mypage/profile
-- プロフィール編集機能：http://localhost/mypage/profile
 - 商品出品画面：http://localhost/sell
-- 商品出品機能：http://localhost/sell
 - いいね機能：http://localhost/items/{item}/like
 - メール認証誘導画面：http://localhost/email/verify
-- 認証メール再送信：http://localhost/email/verification-notification
 - メール認証：http://localhost/email/verify/{id}/{hash}
 
-## マイグレーションリセット＆再実行
+## ダミーデータでログインする場合
 
-- ./vendor/bin/sail artisan migrate:fresh
+- メールアドレス：test@test.com
+- パスワード：password
 
 ## phpMyAdmin
 
