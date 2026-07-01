@@ -14,16 +14,21 @@ class ItemController extends Controller
     {
         $keyword = $request->get('keyword');
 
-        if ($request->get('tab') === 'mylist' && auth()->check()) {
-            $items = auth()->user()->likes()
-                ->with('item.order')
-                ->whereHas('item', function ($query) use ($keyword) {
-                    $query->when($keyword, function ($q) use ($keyword) {
-                        $q->where('name', 'like', "%{$keyword}%");
-                    });
-                })
-                ->get()
-                ->pluck('item');
+        if ($request->get('tab') === 'mylist') {
+            // 未認証の場合は空を返す
+            if (!auth()->check()) {
+                $items = collect();
+            } else {
+                $items = auth()->user()->likes()
+                    ->with('item.order')
+                    ->whereHas('item', function ($query) use ($keyword) {
+                        $query->when($keyword, function ($q) use ($keyword) {
+                            $q->where('name', 'like', "%{$keyword}%");
+                        });
+                    })
+                    ->get()
+                    ->pluck('item');
+            }
         } else {
             $items = Item::with('order')
                 ->when(auth()->check(), function ($query) {
