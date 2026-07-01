@@ -3,11 +3,18 @@
 ## 環境構築
 
 - git clone git@github.com:yume0606/test-marketplace-app.git
-- docker-compose up -d --build
 
 ## Laravel環境構築
 
+- cd laravel
 - cp .env.example .env
+
+.envを以下のように編集する
+
+- DB_HOST=mysql
+- DB_USERNAME=sail
+- DB_PASSWORD=password
+
 - docker run --rm \
   -u "$(id -u):$(id -g)" \
   -v "$(pwd):/var/www/html" \
@@ -17,8 +24,7 @@
   composer install
 - ./vendor/bin/sail up -d
 - ./vendor/bin/sail artisan key:generate
-- ./vendor/bin/sail artisan migrate
-- ./vendor/bin/sail artisan db:seed
+- ./vendor/bin/sail artisan migrate --seed
 
 ## .envのDB設定
 
@@ -42,7 +48,7 @@
 
 ## 使用技術
 
-- PHP 8.2
+- PHP 8.5
 - Laravel 10.x
 - Laravel Sail
 - Laravel Fortify(認証・メール認証)
